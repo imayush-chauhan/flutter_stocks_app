@@ -4,6 +4,7 @@ Have stocks info since there launch by Months, Weeks and Days profit and lose
 
 Search the BSE name of the Stocks in search bar
 
+<img src="screenshot/1.png" width="350" height="622">
 
 
 ## Getting Started
