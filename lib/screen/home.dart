@@ -149,6 +149,7 @@ class _GetStocksDataState extends State<GetStocksData> {
 
   bool show = true;
 
+
   @override
   Widget build(BuildContext context) {
     double mediaQH = MediaQuery.of(context).size.height;
@@ -271,84 +272,143 @@ class _GetStocksDataState extends State<GetStocksData> {
                 ),
               ),
 
-              ListView.builder(
-                itemCount: month.length-1,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context,index){
-                  return m!.containsKey(month[index+1]) ?
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(month[index+1]),
+              SizedBox(height: 20,),
 
-                        Text(m![month[index+1]].toStringAsFixed(4)),
-                        // Text((double.parse(data![k]["1. open"]) - double.parse(data![k]["4. close"])).toString()),
-                      ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text("Profit/Lose in last ${textDate.text} Days by Months",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),),
                     ),
-                  ) : Container();
-                },
-              ),
-
-              ListView.builder(
-                itemCount: name.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context,index){
-                  return a!.containsKey(name[index]) ?
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 90,
-                          child: Text(name[index]),
-                        ),
-                        Container(
-                          width: 100,
+                    ListView.builder(
+                      itemCount: month.length-1,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(0),
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context,index){
+                        return m!.containsKey(month[index+1]) ?
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(a![name[index]][1].toString() + " / " + a![name[index]][2].toString()),
+                              Text(month[index+1]),
+
+                              Text(m![month[index+1]].toStringAsFixed(4)),
+                              // Text((double.parse(data![k]["1. open"]) - double.parse(data![k]["4. close"])).toString()),
                             ],
                           ),
-                        ),
-                        Text(a![name[index]][0].toStringAsFixed(4)),
-                        // Text((double.parse(data![k]["1. open"]) - double.parse(data![k]["4. close"])).toString()),
-                      ],
+                        ) : Container();
+                      },
                     ),
-                  ) : Container();
-                },
+                  ],
+                ),
               ),
 
-              ListView.builder(
-                itemCount: int.parse(textDate.text),
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context,index){
-                  String k = t.subtract(Duration(days: index)).year.toString()+"-"+t.subtract(Duration(days: index)).month.toString().padLeft(2,"0")+"-"+t.subtract(Duration(days: index)).day.toString().padLeft(2,"0");
-                  return data!.containsKey(k) ?
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(k),
-                        Container(
-                          width: 100,
-                          child: Text(DateFormat('EEEE').format(t.subtract(Duration(days: index)))),
-                        ),
-                        Text((double.parse(data![k]["4. close"]) - double.parse(data![k]["1. open"])).toStringAsFixed(4)),
-                        // Text((double.parse(data![k]["1. open"]) - double.parse(data![k]["4. close"])).toString()),
-                      ],
+              SizedBox(height: 20,),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text("Profit/Lose in last ${textDate.text} Days by Weeks",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),),
                     ),
-                  ) : Container();
-                },
+                    ListView.builder(
+                      itemCount: name.length,
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(0),
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context,index){
+                        return a!.containsKey(name[index]) ?
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 90,
+                                child: Text(name[index]),
+                              ),
+                              Container(
+                                width: 100,
+                                child: Row(
+                                  children: [
+                                    Text(a![name[index]][1].toString() + " / " + a![name[index]][2].toString()),
+                                  ],
+                                ),
+                              ),
+                              Text(a![name[index]][0].toStringAsFixed(4)),
+                            ],
+                          ),
+                        ) : Container();
+                      },
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 20,),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Text("Profit/Lose in last ${textDate.text} Days by Weeks",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ),),
+                    ),
+                    ListView.builder(
+                      itemCount: int.parse(textDate.text),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context,index){
+                        String k = t.subtract(Duration(days: index)).year.toString()+"-"+t.subtract(Duration(days: index)).month.toString().padLeft(2,"0")+"-"+t.subtract(Duration(days: index)).day.toString().padLeft(2,"0");
+                        return data!.containsKey(k) ?
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(k),
+                              Container(
+                                width: 100,
+                                child: Text(DateFormat('EEEE').format(t.subtract(Duration(days: index)))),
+                              ),
+                              Text((double.parse(data![k]["4. close"]) - double.parse(data![k]["1. open"])).toStringAsFixed(4)),
+                            ],
+                          ),
+                        ) : Container();
+                      },
+                    ),
+                  ],
+                ),
               )
             ],
           ),
@@ -357,3 +417,4 @@ class _GetStocksDataState extends State<GetStocksData> {
     );
   }
 }
+
