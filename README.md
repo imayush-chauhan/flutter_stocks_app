@@ -1,6 +1,10 @@
-# summer_project
+# Flutter Stocks App
 
-A new Flutter project.
+Have stocks info since there launch by Months, Weeks and Days profit and lose
+
+Search the BSE name of the Stocks in search bar
+
+
 
 ## Getting Started
 
